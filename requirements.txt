@@ -1,0 +1,4 @@
+TgCrypto
+pyrogram==1.0.1
+sqlalchemy==1.3.20
+psycopg2
