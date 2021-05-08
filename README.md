@@ -32,7 +32,7 @@ pip3 install -r requirements.txt
 ```
 - setup configuration
 ```
-Open config.py in text edit and set values
+Open config.py in text Editor and set values
 ```
 - Start the bot
 ```
