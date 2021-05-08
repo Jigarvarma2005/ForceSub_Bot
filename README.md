@@ -30,6 +30,10 @@ cd ForceSub_Bot
 ```
 pip3 install -r requirements.txt
 ```
+- Start the bot
+```
+python3 bot.py
+```
 
 ### Configuration
 Add [APP_ID](https://my.telegram.org/apps), [API_HASH](https://my.telegram.org/apps), [BOT_TOKEN](https://t.me/botfather) in [Config.py](Config.py) or in Environment Variables.
