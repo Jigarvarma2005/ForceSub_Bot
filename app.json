@@ -19,8 +19,8 @@
             "value": "",
             "required": true
         },
-        "API_ID": {
-            "description": "You API ID from my.telegram.org",
+        "APP_ID": {
+            "description": "You APP ID from my.telegram.org",
             "value": "",
             "required": true
         },
