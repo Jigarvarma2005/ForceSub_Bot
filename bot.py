@@ -1,23 +1,19 @@
 import logging
-from pyrogram import Client
+from pyrogram import Client, idle
 from Config import Config
 
-logging.basicConfig(level=logging.INFO)
-
 plugins = dict(
-    root="plugins",
-    include=[
-        "forceSubscribe",
-        "help"
-    ]
-)
+        root="plugins"
+         )
 
 app = Client(
      'ForceSubscribeRobot',
       bot_token = Config.BOT_TOKEN,
       api_id = Config.APP_ID,
       api_hash = Config.API_HASH,
-      plugins = plugins
+      plugins=plugins
 )
 
-app.run()
+app.start()
+idle()
+app.stop()
