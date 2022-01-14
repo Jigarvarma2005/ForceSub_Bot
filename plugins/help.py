@@ -8,7 +8,7 @@ from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, Usern
 UPDATES_CHANNEL = C.UPDATES_CHANNEL
 logging.basicConfig(level=logging.INFO)
 
-@Client.on_message(filters.incoming & filters.command(['start']))
+@Client.on_message(filters.incoming & filters.command(['start']) & filters.private)
 async def _start(client, message):
     update_channel = UPDATES_CHANNEL
     if update_channel:
@@ -72,7 +72,7 @@ async def _start(client, message):
         )
 
 
-@Client.on_message(filters.incoming & filters.command(['source_code']))
+@Client.on_message(filters.incoming & filters.command(['source_code']) & filters.private)
 async def _source_code(client, message):
     await client.send_message(message.chat.id,
         text=tr.SC_MSG.format(message.from_user.first_name, message.from_user.id),
@@ -94,7 +94,7 @@ async def _source_code(client, message):
         reply_to_message_id=message.message_id
         )
 
-@Client.on_message(filters.incoming & filters.command(['help']))
+@Client.on_message(filters.incoming & filters.command(['help']) & filters.private)
 async def _help(client, message):
     update_channel = UPDATES_CHANNEL
     if update_channel:
