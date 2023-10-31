@@ -10,8 +10,7 @@ logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.incoming & filters.command(['start']) & filters.private)
 async def _start(client, message):
-    update_channel = UPDATES_CHANNEL
-    if update_channel:
+    if update_channel := UPDATES_CHANNEL:
         try:
             user = await client.get_chat_member(update_channel, message.chat.id)
             if user.status == "kicked":
@@ -39,7 +38,7 @@ async def _start(client, message):
         except Exception:
             await client.send_message(message.chat.id,
                 text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
-	        reply_markup=InlineKeyboardMarkup(
+        reply_markup=InlineKeyboardMarkup(
                     [
                         [
                            InlineKeyboardButton("Join Updates Channel", url="https://t.me/UniversalBotsUpdate"),
@@ -55,21 +54,21 @@ async def _start(client, message):
         )
             return
     await client.send_message(message.chat.id,
-        text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
-	reply_markup=InlineKeyboardMarkup(
+    text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
+    reply_markup=InlineKeyboardMarkup(
+        [
             [
-                [
-                    InlineKeyboardButton("Join Updates Channel", url="https://t.me/UniversalBotsUpdate"),
-                    InlineKeyboardButton("Support Group", url="https://t.me/UniversalBotsSupport")
-                ],
-                [
-                    InlineKeyboardButton("🧑‍💻Devloper🧑‍💻", url="https://t.me/JigarVarma2005")
-                ]
+                InlineKeyboardButton("Join Updates Channel", url="https://t.me/UniversalBotsUpdate"),
+                InlineKeyboardButton("Support Group", url="https://t.me/UniversalBotsSupport")
+            ],
+            [
+                InlineKeyboardButton("🧑‍💻Devloper🧑‍💻", url="https://t.me/JigarVarma2005")
             ]
-        ),
-        parse_mode="markdown",
-        reply_to_message_id=message.message_id
-        )
+        ]
+    ),
+    parse_mode="markdown",
+    reply_to_message_id=message.message_id
+    )
 
 
 @Client.on_message(filters.incoming & filters.command(['source_code']) & filters.private)
@@ -96,8 +95,7 @@ async def _source_code(client, message):
 
 @Client.on_message(filters.incoming & filters.command(['help']) & filters.private)
 async def _help(client, message):
-    update_channel = UPDATES_CHANNEL
-    if update_channel:
+    if update_channel := UPDATES_CHANNEL:
         try:
             user = await client.get_chat_member(update_channel, message.chat.id)
             if user.status == "kicked":
@@ -149,19 +147,20 @@ async def help_answer(client, callback_query):
 
 
 def map(pos):
-    if(pos==1):
-        button = [
-            [InlineKeyboardButton(text = '-->', callback_data = "help+2")]
-        ]
-    elif(pos==len(tr.HELP_MSG)-1):
-        button = [
-            [InlineKeyboardButton(text = '<--', callback_data = f"help+{pos-1}")]
+    if (pos==1):
+        return [[InlineKeyboardButton(text='-->', callback_data="help+2")]]
+    elif (pos==len(tr.HELP_MSG)-1):
+        return [
+            [InlineKeyboardButton(text='<--', callback_data=f"help+{pos-1}")]
         ]
     else:
-        button = [
+        return [
             [
-                InlineKeyboardButton(text = '<--', callback_data = f"help+{pos-1}"),
-                InlineKeyboardButton(text = '-->', callback_data = f"help+{pos+1}")
+                InlineKeyboardButton(
+                    text='<--', callback_data=f"help+{pos-1}"
+                ),
+                InlineKeyboardButton(
+                    text='-->', callback_data=f"help+{pos+1}"
+                ),
             ],
         ]
-    return button
